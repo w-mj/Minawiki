@@ -63,9 +63,11 @@
                         url: "/user/changePsd",
                         data: str_data,
                         success: function (msg) {
+                            console.log(msg);
                             var dataObject = eval('(' + msg + ')');
                             if (dataObject.result == 'true') {
                                 Materialize.toast("修改密码成功", 3000, 'theme-bg-sec');
+                                // $(document).location.href="/";
                             } else {
                                 Materialize.toast("修改密码失败", 3000, 'theme-bg-sec');
                             }

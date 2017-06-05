@@ -17,6 +17,7 @@ Route::post('/install', 'InstallController@install');
 
 //User Center
 Route::post('/user/read', 'UserController@read') -> middleware('checklogin');
+Route::post('/user/changePsd', 'UserController@changePsd') -> middleware('checklogin');
 Route::get('/user/loadStarMe', 'UserController@loadStarMe') -> middleware('checklogin');
 Route::get('/user/loadAComment', 'UserController@loadAComment') -> middleware('checklogin');
 Route::get('/user/loadCommentMe', 'UserController@loadCommentMe') -> middleware('checklogin');
@@ -25,7 +26,6 @@ Route::get('/user/loadMyComment', 'UserController@getMyComments') -> middleware(
 Route::get('/user/loadMyRating', 'UserController@loadMyRating') -> middleware('checklogin');
 Route::get('/user/loadMyPointDetail', 'UserController@loadMyPointDetails') -> middleware('checklogin');
 Route::get('/user/{subPage?}', 'UserController@showUserCenter') -> middleware('checklogin');
-Route::post('/user/changePsd', 'UserController@testChangePsd') -> middleware('checklogin');
 
 
 Route::get('/{title?}', 'IndexController@index');

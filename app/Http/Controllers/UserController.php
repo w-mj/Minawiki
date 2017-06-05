@@ -11,6 +11,7 @@ use App\Page;
 use App\Comment;
 use App\Star;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -104,6 +105,43 @@ class UserController extends Controller
         else
             StarMessage::where('id',$id)->update(['is_read'=>1]);
 
+    }
+
+    function changePsd(Request $request)
+    {
+        if (!$request->session()->has('user.id')){
+            return redirect('/auth/login');
+        }else{
+            $this->validate($request, [
+                'oldPsd' => 'required',
+                'newPsd' => 'required',
+                'repeat' => 'required'
+            ]);
+
+            $user = User::where('id',$request->session()->get('user.id'))->first();
+
+            if (Hash::check($user->salt . $request->oldPsd,$user->password)){
+                if (Hash::needsRehash($request->oldPsd)){
+                    $salt = base64_decode(random_bytes(24));
+                    $user->salt = $salt;
+                    $user->password = Hash::make($salt . $request->newPsd);
+
+                    $user->token = $user->tel . strval(time());
+                    $user->save();
+                    print("a");
+                    return response(json_encode(array('result' => 'true', 'msg' => 'success')));
+                }
+            }
+            else{
+                $request->session()->forget('user.id');
+                $request->session()->forget('user.tel');
+                $request->session()->forget('user.theme');
+                $request->session()->forget('user.power');
+                $request->session()->forget('user.admin');
+                $request->session()->forget('user.sessionReality');
+                return response(json_encode(array('result' => 'false', 'msg' => 'wrong')));
+            }
+        }
     }
 }
 
