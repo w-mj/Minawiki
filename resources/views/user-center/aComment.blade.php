@@ -19,7 +19,7 @@
             <div class="col right">
                 <!-- 星星和删除 -->
                 <a class="material-icons secondary-content" style="color:red;"
-                   href="javascript: showDeleteCommentModal({!! $item -> id !!})">delete</a>
+                   href="javascript: deleteComment('{{ strval($item -> page -> title)}}', '{{ $item -> id }}' )">delete</a>
                 <a class=" secondary-content"><i class="material-icons">star</i><span class="star-badge">{{ $item -> star_num }}</span></a>
             </div>
         </div>
