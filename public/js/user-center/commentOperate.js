@@ -43,19 +43,26 @@ function star(page_title, id) {
 }
 function setStar(casenum, id) {
     console.log(id);
+    var star;
     if (casenum == 0) {
-        $('#' + id.toString() + '_star').html('&#xE838;');
+        star = $('#' + id.toString() + '_star');
+        star.html('&#xE838;');
+        star.attr('title', '再赞!');
         $('#' + id.toString() + '_star_badge').html((parseInt($('#' + id.toString() + '_star_badge').html()) + 1).toString());
         $('#' + id.toString() + '_star_badge').removeAttr('style');
         $('#' + id.toString() + '_star_casenum').val(1);
     }
     else if (casenum == 1) {
-        $('#' + id.toString() + '_star').html('&#xE838;');
+        star = $('#' + id.toString() + '_star');
+        star.html('&#xE838;');
+        star.attr('title', '取消赞');
         $('#' + id.toString() + '_star_badge').html((parseInt($('#' + id.toString() + '_star_badge').html()) + 1).toString());
         $('#' + id.toString() + '_star_casenum').val(2);
     }
     else if (casenum == 2) {
-        $('#' + id.toString() + '_star').html('&#xE83A;');
+        star = $('#' + id.toString() + '_star');
+        star.html('&#xE83A;');
+        star.attr('title', '赞!');
         $('#' + id.toString() + '_star_badge').html((parseInt($('#' + id.toString() + '_star_badge').html()) - 2).toString());
         if (parseInt($('#' + id.toString() + '_star_badge').html()) <= 0)
             $('#' + id.toString() + '_star_badge').attr('style', 'display: none');
@@ -66,19 +73,25 @@ function setStar(casenum, id) {
 }
 function resetStar(casenum, id) {
     if (casenum == 0) {
-        $('#' + id.toString() + '_star').html('&#xE83A;');
+        star = $('#' + id.toString() + '_star');
+        star.html('&#xE83A;');
+        star.attr('title', '赞!');
         $('#' + id.toString() + '_star_badge').html((parseInt($('#' + id.toString() + '_star_badge').html()) - 1).toString());
         $('#' + id.toString() + '_star_casenum').val('0');
         if (parseInt($('#' + id.toString() + '_star_badge').html()) <= 0)
             $('#' + id.toString() + '_star_badge').attr('style', 'display: none');
     }
     else if (casenum == 1) {
-        $('#' + id.toString() + '_star').html('&#xE838;');
+        star = $('#' + id.toString() + '_star');
+        star.html('&#xE838;');
+        star.attr('title', '再赞!');
         $('#' + id.toString() + '_star_badge').html((parseInt($('#' + id.toString() + '_star_badge').html()) - 1).toString());
         $('#' + id.toString() + '_star_casenum').val('1');
     }
     else if (casenum == 2) {
-        $('#' + id.toString() + '_star').html('&#xE838;');
+        star = $('#' + id.toString() + '_star');
+        star.html('&#xE838;');
+        star.attr('title', '取消赞');
         $('#' + id.toString() + '_star_badge').html((parseInt($('#' + id.toString() + '_star_badge').html()) + 2).toString());
         $('#' + id.toString() + '_star_badge').removeAttr('style');
         $('#' + id.toString() + '_star_casenum').val('2');

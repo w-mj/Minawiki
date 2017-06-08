@@ -1,7 +1,7 @@
 @foreach($paginator as $item)
     @if ($item -> is_read == false)
-        <li class="message comment_message collection-item unread" id="comment_{{ $item -> id }}">
-            <a class="setRead secondary-content"
+        <li class="message comment_message collection-item unread theme-dark-a" id="comment_{{ $item -> id }}">
+            <a class="setRead secondary-content" data-toggle="hover" data-placement="bottom" title="已读"
                href="javascript: setRead('{{ strval('comment_'.$item -> id) }}')">
                 <i class="material-icons">done</i>
             </a>
@@ -30,25 +30,26 @@
                     @if ($item -> comment -> page != null)
                     @if($item -> user_star_num == 0)
                         <input id="{{ $item -> comment -> id }}_star_casenum" style="display: none" value="0">
-                        <a class="secondary-content"
+                        <a class="secondary-content" data-toggle="hover" data-placement="bottom" title="赞!"
                            href="javascript: star('{{$item -> comment -> page -> title}}', '{{ $item -> comment -> id }}')"><i
                                     class="material-icons" id="{{$item -> comment -> id}}_star">&#xE83A;</i><span
                                     class="star-badge" id="{{ $item -> comment ->id }}_star_badge" style="display: none;">0</span></a>
                     @elseif($item -> user_star_num == 1)
                         <input id="{{ $item -> comment -> id }}_star_casenum" style="display: none" value="1">
-                        <a class="secondary-content"
+                        <a class="secondary-content" data-toggle="hover" data-placement="bottom" title="再赞!"
                            href="javascript: star('{{$item -> comment -> page -> title}}', '{{ $item -> comment -> id }}')"><i
                                     class="material-icons" id="{{$item -> comment -> id}}_star">&#xE838;</i><span
                                     class="star-badge" id="{{ $item -> comment ->id }}_star_badge">1</span></a>
                     @elseif($item -> user_star_num == 2)
                         <input id="{{ $item -> comment -> id }}_star_casenum" style="display: none" value="2">
-                        <a class="secondary-content"
+                        <a class="secondary-content" data-toggle="hover" data-placement="bottom" title="取消赞"
                            href="javascript: star('{{$item -> comment -> page -> title}}', '{{ $item -> comment -> id }}')"><i
                                     class="material-icons" id="{{$item -> comment -> id}}_star">&#xE838;</i><span
                                     class="star-badge" id="{{ $item -> comment ->id }}_star_badge">2</span></a>
                     @endif
                     @endif
-                    <a class="secondary-content" href="javascript: replying('{{ $item -> id }}', '{{ $item -> comment -> id }}')">
+                    <a class="secondary-content" data-toggle="hover" data-placement="bottom" title="回复"
+                       href="javascript: replying('{{ $item -> id }}', '{{ $item -> comment -> id }}')">
                         <i class="material-icons">&#xE15E;</i></a>
                 </div>
             </div>

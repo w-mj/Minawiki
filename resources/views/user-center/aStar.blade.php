@@ -5,7 +5,7 @@
     @else
         <li class="message unread collection-item star_message" id="star_{{ $item -> id }}">
             <a class="setRead" href="javascript: setRead('{{ 'star_'.strval($item -> id) }}')">
-                <i class="material-icons">done</i></a>
+                <i class="material-icons" data-toggle="hover" data-placement="bottom" title="已读">done</i></a>
             @endif
             <span>
                 匿名用户赞了你的评论@if($item -> times == 2)两次@endif
